@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简易微博</title>
+	<link rel="stylesheet" href="css/personalcss/iconfont.css">
+	<link rel="stylesheet" href="css/personalcss/reset.css">
+	<link rel="stylesheet" href="css/personalcss/style.css">
+</head>
+<body>
+	<div class="section1">
+		<div class="section">
+			<form action="">
+			<img class="header_main" src="img/WB_logo-x2.png" alt="">
+			<ul class="header_main">
+				<a href="/index"><li>首页</li></a>
+				<a href=""><li>视频</li></a>
+				<a href=""><li>发现</li></a>
+				<a href=""><li>游戏</li></a>
+			</ul>
+			<input  class="header_main" type="text" required>
+			<button>
+				<a href=""><i class="iconfont">&#xe63a;</i></a>
+			</button>
+			<div class="ranking">
+				<i class="iconfont">&#xe68f;</i>
+				<a href=""><span>排行榜</span></a>
+			</div>
+			<!-- <button class="quit">注销</button> -->
+			<a href="">
+				<img  class="picture" src="img/<%=Avatar%>" alt="">
+			</a>
+		</form>
+			<button class="quit" id="zhuxiao">注销</button>
+			<div class="rest cleanfloat">
+				<a href=""><i class="iconfont">&#xe609;</i></a>
+			</div>
+		<!-- </form> -->
+		</div>
+	</div>
+	<div class="section2">
+		<div class="section">
+			<div class="section2_main">
+				<img class="background" src="img/p2.png" alt="">
+				<img class="picture" src="img/<%=Avatar%>" alt="">
+				<div class="name"><%=information.Nickname%></div>
+				<div class="sign"><%=information.Signature%></div>
+			</div>
+		</div>
+	</div>
+	<div class="section3">
+		<div class="section">
+			<div class="section3_main">
+				<span>我的主页</span>
+				<span>我的相册</span>
+				<span>管理中心</span>
+			</div>
+		</div>
+	</div>
+	<div class="section4">
+		<div class="section">
+			<div class="section4_main">
+				<div class="header">
+					<div class="part">
+						<ul>
+							<li><%=information.Concern.length%></li>
+							<li><a href="/MyConcern">关注</a></li>
+						</ul>
+					</div>
+					<div class="part">
+						<ul>
+							<li><%=information.Fans.length%></li>
+							<li><a href="/MyFan">粉丝</a></li>
+						</ul>
+					</div>
+					<div class="part3">
+						<ul>
+							<li><%=blogs_count%></li>
+							<li><a href="">微博</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="main">
+					<div class="part1"><span>个人资料</span></div>
+					<div class="part2">
+						<ul>
+							<li><i class="iconfont">&#xe503;</i><span><%=information.Location%></span></li>
+							<li><i class="iconfont">&#xe605;</i><span>毕业于<%=information.School%></span></li>
+							<li><i class="iconfont">&#xe662;</i><span><%=information.Birthday%></span></li>
+						</ul>
+					</div>
+					<div class="part3">资料详情</div>
+				</div>
+				<div class="foot">
+					<div class="part1"><span>相册</span></div>
+					<div class="part2">
+						<img class="big" src="img/p3.png" alt="">
+						<img class="left1" src="img/p4.png" alt="">
+						<img class="left2" src="img/p5.png" alt="">
+						<img class="down" src="img/p7.png" alt="">
+						<img class="down" src="img/p6.png" alt="">
+						<img class="down1" src="img/p8.png" alt="">
+					</div>
+					<div class="part3">查看更多</div>
+				</div>
+			</div>
+			<div class="section4_main1">
+				<div class="main_header">
+					<span>全部</span>
+					<span>热门</span>
+					<span>原创</span>
+					<span>图片</span>
+					<span>视频</span>
+					<span>文章</span>
+					<span>标签</span>
+					<form action="">
+						<input  class="header_main" type="text" required placeholder="搜索我的微博">
+						<button>
+							<a href=""><i class="iconfont">&#xe63a;</i></a>
+						</button>
+					</form>
+				</div>
+				<div class="main_right">
+					<ul>
+						<li>最近</li>
+						<li>2019</li>
+						<li>2018</li>
+						<li>2017</li>
+						<li>2016</li>
+						<li>2015</li>
+						<li>第一条微博</li>
+					</ul>
+				</div>
+				<%for(var i = 0; i < all.length; i++) {%>
+				<div class="part">
+					<div class="header">
+						<a href=""><img src="img/<%=Avatar%>" alt=""></a>
+						<div class="name">
+							<ul>
+								<a href=""><li><%=Nickname%><span>（备注名称）</span></li></a>
+								<li><span><%=all[i].Create_At%></span></li>
+							</ul>
+						</div>
+						<span><a href=""><i class="iconfont">&#xe727;</i></a></span>
+					</div>
+					<div class="main">
+						<div class="word">
+							<%=all[i].Circle_content%>
+							<a href="">
+								<span class="special">#这个是话题#</span>
+							</a>
+						</div>
+						<img src="img/p6.png" alt="">
+						<img src="img/p2.png" alt="">
+						<img src="img/p3.png" alt="">
+						<img src="img/p4.png" alt="">
+					</div>
+					<div class="foot">
+						<ul>
+							<li>
+								<a href=""><i class="iconfont">&#xe628;</i></a>
+								<a href=""><span>123</span></a>
+							</li>
+							<li>
+								<a href=""><i class="iconfont">&#xe6e7;</i></a>
+								<a href=""><span>分享</span></a>
+							</li>
+							<li>
+								<a href=""><i class="iconfont">&#xe664;</i></a>
+								<a href=""><span><%=all[i].Likes_count%></span></a>
+							</li>
+							<li class="special">
+								<a href=""><i class="iconfont">&#xe60c;</i></a>
+								<a href=""><span><%=all[i].Likes_count%></span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<%}%>
+				<!-- <div class="part">
+					<div class="header">
+						<a href=""><img src="img/p1.png" alt=""></a>
+						<div class="name">
+							<ul>
+								<a href=""><li>这个是昵称<span>（备注名称）</span></li></a>
+								<li><span>今天14.12</span></li>
+							</ul>
+						</div>
+						<span><a href=""><i class="iconfont">&#xe727;</i></a></span>
+					</div> -->
+					<!-- <div class="main">
+						<div class="word">
+							转发微博
+						</div>
+						<div class="relay">
+							<div class="name">@jetris</div>
+							<div class="word">
+							素质过硬的图片，均衡有效的布局，轻重对比的色彩，在好的设计里面这些东西一个都不能少 ~ 轻重对比的色彩，在好的设计里面这些东西一个，轻重对比的色彩，在好的设计里面这。
+								<a href="">
+									<span class="special">#这个是话题#</span>
+								</a>
+							</div>
+							<img src="img/p6.png" alt="">
+							<img src="img/p2.png" alt="">
+							<img src="img/p3.png" alt="">
+							<img src="img/p4.png" alt="">
+							<div class="time">
+								<span>1月3日 14：12</span>
+							</div>
+						</div>
+					</div>
+					<div class="foot">
+						<ul>
+							<li>
+								<a href=""><i class="iconfont">&#xe628;</i></a>
+								<a href=""><span>123</span></a>
+							</li>
+							<li>
+								<a href=""><i class="iconfont">&#xe6e7;</i></a>
+								<a href=""><span>分享</span></a>
+							</li>
+							<li>
+								<a href=""><i class="iconfont">&#xe664;</i></a>
+								<a href=""><span>32</span></a>
+							</li>
+							<li class="special">
+								<a href=""><i class="iconfont">&#xe60c;</i></a>
+								<a href=""><span>12</span></a>
+							</li>
+						</ul>
+					</div> -->
+				<!-- </div> -->
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$("#zhuxiao").click(function() {
+    			$.ajax({
+					url: '/doCancle',
+					type : 'get',
+					contentType: "application/json; charset=utf-8",
+					data: JSON.stringify({
+						
+											}),
+					dataType: "json",
+					success: function(data) {
+						alert(JSON.stringify(data.descript));
+						window.location = "/";
+					},
+					error: function(data) {
+						alert(JSON.stringify(data))
+					}
+				})
+    		});
+	</script>
+</body>
+</html>

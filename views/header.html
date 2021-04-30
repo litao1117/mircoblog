@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/css0/iconfont.css">
+	<link rel="stylesheet" href="css/css0/reset.css">
+	<link rel="stylesheet" href="css/css0/style.css">
+</head>
+<body>
+	<div class="section1">
+		<div class="section">
+			<form action="">
+			<img class="header_main" src="img/WB_logo-x2.png" alt="">
+			<ul class="header_main">
+				<a href=""><li>首页</li></a>
+				<a href=""><li>视频</li></a>
+				<a href=""><li>发现</li></a>
+				<a href=""><li>游戏</li></a>
+			</ul>
+			<input  class="header_main" type="text" required>
+			<button>
+				<a href=""><i class="iconfont">&#xe63a;</i></a>
+			</button>
+			<div class="ranking">
+				<a href="/rankinglist"><i class="iconfont">&#xe68f;</i></a>
+				<a href="/rankinglist"><span>排行榜</span></a>
+			</div>
+			<a href="/introduce">
+				<img  class="picture" src="/img/<%=userAvatar%>" alt="">
+			</a>
+		</form>
+			<button class="quit" id="zhuxiao">注销</button>
+			<div class="rest cleanfloat">
+				<a href="/index"><i class="iconfont">&#xe609;</i></a>
+			</div>
+		</div>
+	</div>
+	<script type="text/JavaScript">
+    		$("#zhuxiao").click(function() {
+    			$.ajax({
+					url: '/doCancle',
+					type : 'get',
+					contentType: "application/json; charset=utf-8",
+					data: JSON.stringify({
+						
+											}),
+					dataType: "json",
+					success: function(data) {
+						alert(JSON.stringify(data.descript));
+						window.location = "/";
+					},
+					error: function(data) {
+						alert(JSON.stringify(data))
+					}
+				})
+    		});
+    	</script>
+</body>
+</html>s

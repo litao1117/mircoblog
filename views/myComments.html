@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简易微博</title>
+	<link rel="stylesheet" href="css/myComments_css/iconfont.css">
+	<link rel="stylesheet" href="css/myComments_css/reset.css">
+	<link rel="stylesheet" href="css/myComments_css/style.css">
+</head>
+<body>
+	<div class="section1">
+		<div class="section">
+			<form action="">
+			<img class="header_main" src="img/WB_logo-x2.png" alt="">
+			<ul class="header_main">
+				<a href="/index"><li>首页</li></a>
+				<a href=""><li>视频</li></a>
+				<a href=""><li>发现</li></a>
+				<a href=""><li>游戏</li></a>
+			</ul>
+			<input  class="header_main" type="text" required>
+			<button>
+				<a href=""><i class="iconfont">&#xe63a;</i></a>
+			</button>
+			<div class="ranking">
+				<a href="/rankinglist"><i class="iconfont">&#xe68f;</i></a>
+				<a href="/rankinglist"><span>排行榜</span></a>
+			</div>
+			<a href="/personal">
+				<img  class="picture" src="img/椭圆 1.png" alt="">
+			</a>
+		</form>
+			<button class="quit" id="zhuxiao">注销</button>
+			<div class="rest cleanfloat">
+				<a href="/introduce"><i class="iconfont">&#xe609;</i></a>
+			</div>
+		</div>
+	</div>
+	<div class="section2">
+		<div class="section">
+			<div class="section_left">
+				<ul class="part1">
+					<a href=""><li class="first">首页</li></a>
+					<a href=""><li>我的收藏</li></a>
+					<a href=""><li>我的点赞</li></a>
+					<a href=""><li>我的评论</li></a>
+				</ul>
+				<ul class="part2">
+					<a href=""><li>好友圈</li></a>
+					<a href=""><li>特别关注</li></a>
+					<a href=""><li>设计</li></a>
+					<a href=""><li>互联网</li></a>
+					<a href=""><li>同学</li></a>
+					<a href=""><li>朋友</li></a>
+				</ul>
+			</div>
+			<div class="section_main">
+				<div class="part_header">
+					<div class="header">
+						<span><a href="/myComments">收到</a></span>
+						<span><a href="/myCommentsout">发出</a></span>
+						<input type="text" required placeholder="搜索我的微博">
+						<button>
+							<a href=""><i class="iconfont">&#xe63a;</i></a>
+						</button>
+					</div>
+					<div class="p1"></div> 
+				</div>
+				<%for(var i = 0; i < circle.length; i++) {%>
+				<div class="part">
+					<div class="header">
+						<a href=""><img src="img/p0.png" alt=""></a>
+						<div class="name">
+							<ul>
+								<a href=""><li><%=circle[i].obju.Nickname%><span>（备注名称）</span></li></a>
+								<li><span><%=circle[i].objc.Creata_At%></span></li>
+							</ul>
+						</div>
+						<span><a href=""><i class="iconfont">&#xe727;</i></a></span>
+					</div>
+					<div class="main">
+						<div class="word">
+							回复<span class="special">@<%=circle[i].obju.Nickname%></span>：这个是回复的内容啊
+						</div>
+						<div class="talk">
+							<span><%=circle[i].obju.Nickname%>:<%=circle[i].objc.Comment_content%></span>
+						</div>
+					</div>
+					<div class="foot">
+						<ul>
+							<li>
+								<a href=""><i class="iconfont">&#xe664;</i></a>
+								<a href=""><span onclick="Relay('<%=circle[i].objc.Comment_id%>')">回复</span></a>
+							</li>
+							<li class="special">
+								<a href=""><i class="iconfont">&#xe60c;</i></a>
+								<a href=""><span><%=circle[i].objc.Likes_count%></span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<%}%>
+			</div>
+			<div class="section_right">
+				<div class="header">
+					<img class="background" src="img/矩形 286.png" alt="">
+					<img class="picture" src="img/<%=user.Avatar%>" alt="">
+					<div class="name"><%=user.Nickname%></div>
+					<div class="down">
+						<div class="part">
+							<ul>
+								<li><%=user.Concern.length%></li>
+								<li><a href="">关注</a></li>
+							</ul>
+						</div>
+						<div class="part">
+							<ul>
+								<li><%=user.Fans.length%></li>
+								<li><a href="">粉丝</a></li>
+							</ul>
+						</div>
+						<div class="part3">
+							<ul>
+								<li><%=blogs_count%></li>
+								<li><a href="">微博</a></li>
+							</ul>
+						</div>
+					</div>	
+				</div>
+				<div class="talk">
+					<div class="header">
+						<span class="word1">热门话题</span>
+						<span><a href=""><i class="iconfont">&#xe653;</i></a></span>
+						<a href=""><span class="word2">换一换</span></a>
+					</div>
+					<ul>
+						<a href="">
+							<li>#这个是话题啊啊啊啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话题啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话题啊啊啊啊啊啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话题啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话题啊啊啊啊啊啊啊啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是啊啊啊话题啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话啊啊题啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话啊啊啊啊题啊#<span>1.7亿</span></li>
+						</a>
+					</ul>
+					<div class="foot">
+						<a href="">查看更多</a>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+	<script src="/js/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="/js//jquery.min.js"><\/script>')</script>
+	<script type="text/javascript">
+		$("#zhuxiao").click(function() {
+    			$.ajax({
+					url: '/doCancle',
+					type : 'get',
+					contentType: "application/json; charset=utf-8",
+					data: JSON.stringify({
+						
+											}),
+					dataType: "json",
+					success: function(data) {
+						alert(JSON.stringify(data.descript));
+						window.location = "/";
+					},
+					error: function(data) {
+						alert(JSON.stringify(data))
+					}
+				})
+    		});
+		function Reply(Commentid) {
+			$.ajax({
+				url: '/doReply',
+				type : 'POST',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({
+					"Reply_content" : $("#Reply_content").val(),
+					"id" : Commentid
+				}),
+				dataType: "json",
+				success: function(data) {
+					alert(JSON.stringify(data.descript));
+					location.reload();
+				},
+				error: function(data) {
+					alert(JSON.stringify(data))
+				}
+			});
+		};
+	</script>
+</body>
+</html>

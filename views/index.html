@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简易微博</title>
+	<link rel="stylesheet" href="/css/css/iconfont.css">
+	<link rel="stylesheet" href="/css/css/reset.css">
+	<link rel="stylesheet" href="/css/css/style.css">
+	<script src="/js/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="/js//jquery.min.js"><\/script>')</script>
+</head>
+<body>
+	<% include header.html %>
+	<div class="section2">
+		<div class="section">
+			<div class="section_left">
+				<ul class="part1">
+					<a href="/index"><li class="first">首页</li></a>
+					<a href="/myCollect"><li>我的收藏</li></a>
+					<a href="/myLike"><li>我的点赞</li></a>
+					<a href="/myComments"><li>我的评论</li></a>
+				</ul>
+				<ul class="part2">
+					<a href=""><li>好友圈</li></a>
+					<a href=""><li>特别关注</li></a>
+					<a href=""><li>设计</li></a>
+					<a href=""><li>互联网</li></a>
+					<a href=""><li>同学</li></a>
+					<a href=""><li>朋友</li></a>
+				</ul>
+			</div>
+			<div class="section_main">
+				<div class="main_header">
+					<textarea name="content" id="content" cols="30" rows="10"></textarea>
+					<div class="nav"><i class="iconfont">&#xe505;</i><span class="word">表情</span></div>
+					<div class="nav"><i class="iconfont">&#xe608;</i><span class="word">图片</span></div>
+					<div class="nav"><i class="iconfont">&#xe601;</i><span class="word">视频</span></div>
+					<div class="nav"><i class="iconfont">&#xe698;</i><span class="word">话题</span></div>
+					<button type="button" id="fabiao">发布</button>
+				</div>
+				<div class="part_header">
+					<span>全部</span>
+					<span>原创</span>
+					<span>图片</span>
+					<span>视频</span>
+					<span>文章</span>
+					<form action="">
+						<input type="text" placeholder="我关注的人">
+						<button><i class="iconfont">&#xe63a;</i></button>
+					</form>
+				</div>
+				<%for(var i = 0; i < all.length; i++) {%>
+				<div class="part">
+					<div class="header">
+						<a href=""><img src="/img/<%=all[i].obju.Avatar%>" alt=""></a>
+						<div class="name">
+							<ul>
+								<a href=""><li><%=all[i].obju.Nickname%><span>（备注名称）</span></li></a>
+								<li><span><%=all[i].objc.Create_At%></span></li>
+							</ul>
+						</div>
+						<%if(all[i].objc.User_id != ConcernPeople.user_id) {%>
+							<% if(ConcernPeople.Concern.length != 0) {%>
+								<% for(var j = 0 ; j < ConcernPeople.Concern.length ; j++) {%>
+									<% if(ConcernPeople.Concern[j] == all[i].objc.User_id) {%>
+										<div class="list">
+											<div class="button"><button><span>√</span>已关注</button></div>
+											<div class="word"><span onclick="ConcernOut('<%=all[i].objc.User_id%>')">取消关注</span></div>
+											<div class="word"><span>设置备注</span></div>
+											<div class="word"><span>设置分组</span></div>
+											<div class="word"><span>设为特别关注</span></div>
+
+										</div>
+										<span><a href=""><i class="iconfont">&#xe727;</i></a></span>
+										<% break %>           <!-- 如果查询到就结束此次循坏 -->
+									<% } %>
+									<% if(j == ConcernPeople.Concern.length-1) {%>
+										<button onclick="Concern('<%=all[i].objc.User_id%>')"><span>+</span>关注</button>
+										<span><a href=""><i class="iconfont">&#xe727;</i></a></span>
+										<% break %> 
+									<% } %>
+								<% } %>
+							<% } else {%>
+								<button onclick="Concern('<%=all[i].objc.User_id%>')"><span>+</span>关注</button>
+								<span><a href=""><i class="iconfont">&#xe727;</i></a></span>
+							<% }%>	
+						<%} else {%>
+							<span><a href=""><i class="iconfont">&#xe727;</i></a></span>
+						<%}%>
+						
+					</div>
+					<div class="main">
+						<div class="word">
+							<%=all[i].objc.Circle_content%>
+							<a href="">
+								<span class="special">#这个是话题#</span>
+							</a>
+						</div>
+						<img src="/img/p1.png" alt="">
+						<img src="/img/p2.png" alt="">
+					</div>
+					<div class="foot">
+						<ul>
+							<li>
+								<%if(collects.length != 0) {%>
+									<%for(var d = 0; d < collects.length; d++) {%>
+										<%if(collects[d].Circle_id == all[i].objc.Circle_id) {%>
+											<i class="iconfont" onclick="CollectOut('<%=all[i].objc.Circle_id%>')">&#xe665;</i>
+											<span onclick="CollectOut('<%=all[i].objc.Circle_id%>')">已收藏</span>
+										<%break%>
+										<%}%>
+										<%if(d == collects.length-1) {%>
+											<i class="iconfont" onclick="Collect('<%=all[i].objc.Circle_id%>')">&#xe665;</i>
+									<span onclick="Collect('<%=all[i].objc.Circle_id%>')">收藏</span>
+											<%break%>	
+										<%}%>	
+									<%}%>
+								<%} else {%>
+									<i class="iconfont" onclick="Collect('<%=all[i].objc.Circle_id%>')">&#xe665;</i>
+									<span onclick="Collect('<%=all[i].objc.Circle_id%>')">收藏</span>
+								<%}%>	
+							</li>
+							<li class="foot_comment">
+								<% if(relays.length != 0) { %>
+									<% for(var k = 0; k < relays.length; k++) { %>
+										<% if(relays[k].Circle_id == all[i].objc.Circle_id) { %>
+											<i class="iconfont">&#xe6e7;</i>
+											<span>已转发</span>
+										<% break %>
+										<% } %>
+										<% if(k == relays.length-1) { %>
+											<i class="iconfont" onclick="isHidden('relay')">&#xe6e7;</i>
+									<span onclick="isHidden('relay')">转发</span>
+										<% break %>
+										<% } %>
+									<% } %>
+								<% } else {%>
+									<i class="iconfont" onclick="isHidden('relay')">&#xe6e7;</i>
+									<span onclick="isHidden('relay')">转发</span>
+								<% } %>
+							</li>
+							<li>
+								<i class="iconfont" onclick="isHidden('comment<%= i%>')">&#xe664;</i>
+								<span onclick="isHidden('comment<%= i%>')"><%=all[i].objc.Comments_count%></span>
+							</li>							
+							<li class="special">
+								<%if(likes.length != 0){%>
+									<%for(var c = 0; c < likes.length; c++) {%>
+										<%if(likes[c].Circle_id == all[i].objc.Circle_id) {%>
+											<i class="cs" onclick="LikeOut('<%=all[i].objc.Circle_id%>')">&#xe60c;</i>
+											<span><%=all[i].objc.Likes_count%></span>									
+										<%break%>
+										<%}%>
+										<%if(c == likes.length-1) {%>
+											<i class="iconfont" onclick="Like('<%=all[i].objc.Circle_id%>')">&#xe60c;</i>
+											<span><%=all[i].objc.Likes_count%></span>
+											<%break%>	
+										<%}%>	
+									<%}%>
+								<%} else {%>
+									<i class="iconfont" onclick="Like('<%=all[i].objc.Circle_id%>')">&#xe60c;</i>
+									<span><%=all[i].objc.Likes_count%></span>
+								<%}%>				
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="comment" id="relay" style="display : none">
+					<div class="input">
+						<form>
+						<img src="/img/p0.png" alt="">
+						<textarea name="Relay_content" id="Relay_content" cols="30" rows="10"></textarea>
+						<div class="nav"><i class="iconfont">&#xe505;</i><span class="word">表情</span></div>
+						<div class="nav"><i class="iconfont">&#xe608;</i><span class="word">图片</span></div>						
+							<button onclick="Relay('<%=all[i].objc.Circle_id%>')">转发</button>
+						</form>
+					</div>
+				</div>
+				<div class="comment" id="comment<%=i%>" style="display : none">			
+					<div class="input">
+						<form>
+						<img src="/img/p0.png" alt="">
+						<textarea name="Comment_content" id="Comment_content<%=i%>" cols="30" rows="10"></textarea>
+						<div class="nav"><i class="iconfont">&#xe505;</i><span class="word">表情</span></div>
+						<div class="nav"><i class="iconfont">&#xe608;</i><span class="word">图片</span></div>						
+							<input type="checkbox" id="content">
+							<span class="word">同时转发到我的微博</span>
+							<button onclick="Comment('<%=all[i].objc.Circle_id%>','Comment_content<%=i%>')">发布</button>
+						</form>
+					</div>
+					<%for(var a = 0; a < all[i].CommentData.length; a++) {%>
+					<div class="header">
+						<a href=""><img src="/img/<%=all[i].CommentData[a].Avatar%>" alt=""></a>
+						<div class="name">
+							<ul>
+								<a href=""><li><%=all[i].CommentData[a].Nickname%>:  <span><%=all[i].CommentData[a].Comment_content%></span></li></a>
+								<li><span><%=all[i].CommentData[a].Create_At%></span></li>
+							</ul>
+						</div>
+						<span class="word" onclick="isHidden('comment<%=i%>answer<%=a%>')">回复</span>
+						<span><i class="iconfont">&#xe60c;</i><span class="special">12</span></span>
+						<div class="answer" id="comment<%=i%>answer<%=a%>" style="display : none">
+							<div>
+								<textarea name="Reply_content" id="Reply_content<%=a%>" cols="30" rows="10"></textarea>
+							</div>
+							<div class="nav"><i class="iconfont">&#xe505;</i><span class="word">表情</span></div>
+							<div class="nav"><i class="iconfont">&#xe608;</i><span class="word">图片</span></div>
+							<button onclick="Reply('<%=all[i].CommentData[a].Comment_id%>','Reply_content<%=a%>')">发布</button>
+							
+							<a href=""><img src="/img/moren.jpg" alt=""></a>
+							<div class="name">
+								<ul>
+									<a href=""><li>小明:<span>哈哈</span></li></a>
+									<li><span>2019-03-27 18:36</span></li>
+								</ul>
+							</div>
+							<span class="words">回复</span>
+							<span><i class="iconfont">&#xe60c;</i><span class="special">12</span></span>
+							
+						</div>
+					</div>
+					<% } %>
+				</div>
+				<% } %>
+			</div>
+			<div class="section_right">
+				<div class="header">
+					<img class="background" src="/img/矩形 286.png" alt="">
+					<a href="/personal"><img class="picture" src="/img/<%=userAvatar%>" alt=""></a>
+					<div class="name"><%=userNickname%></div>
+					<div class="down">
+						<div class="part">
+							<ul>
+								<li><%=ConcernPeople.Concern.length%></li>
+								<li><a href="/MyConcern">关注</a></li>
+							</ul>
+						</div>
+						<div class="part">
+							<ul>
+								<li><%=ConcernPeople.Fans.length%></li>
+								<li><a href="/MyFan">粉丝</a></li>
+							</ul>
+						</div>
+						<div class="part3">
+							<ul>
+								<li><%=blogs_count%></li>
+								<li><a href="/personal">微博</a></li>
+							</ul>
+						</div>
+					</div>	
+				</div>
+				<div class="talk">
+					<div class="header">
+						<span class="word1">热门话题</span>
+						<span><a href=""><i class="iconfont">&#xe653;</i></a></span>
+						<a href=""><span class="word2">换一换</span></a>
+					</div>
+					<ul>
+						<a href="">
+							<li>#这个是话题啊啊啊啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话题啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话题啊啊啊啊啊啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话题啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话题啊啊啊啊啊啊啊啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是啊啊啊话题啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话啊啊题啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话啊啊啊啊题啊#<span>1.7亿</span></li>
+						</a>
+					</ul>
+					<div class="foot">
+						<a href="">查看更多</a>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function () {            
+            $(".iconfont").click(function () {
+                $(this).toggleClass('cs');                
+            })
+        })
+		function isHidden(oDiv) {
+			var vDiv = document.getElementById(oDiv);
+			vDiv.style.display = (vDiv.style.display == 'none') ? 'block' : 'none';
+		};
+		
+		function Comment(Circleid,Commentid) {
+			$.ajax({
+				url: '/doComments',
+				type : 'POST',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({
+					"Comment_content" : $("#"+Commentid).val(),
+					"id" : Circleid
+				}),
+				dataType: "json",
+				success: function(data) {
+					// alert(JSON.stringify(data.descript));
+					location.reload();
+				},
+				error: function(data) {
+					alert(JSON.stringify(data))
+				}
+			});
+		};
+		function Collect(Circleid) {
+			$.ajax({
+				url: '/doCollect',
+				type : 'POST',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({
+					"id" : Circleid
+				}),
+				dataType: "json",
+				success: function(data) {
+					// alert(JSON.stringify(data.descript));
+					location.reload();
+				},
+				error: function(data) {
+					alert(JSON.stringify(data))
+				}
+			});
+		};
+		function CollectOut(Circleid) {
+			$.ajax({
+				url: '/doCollectOut',
+				type : 'POST',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({
+					"id" : Circleid
+				}),
+				dataType: "json",
+				success: function(data) {
+					// alert(JSON.stringify(data.descript));
+					location.reload();
+				},
+				error: function(data) {
+					alert(JSON.stringify(data))
+				}
+			});
+		};
+		function Reply(Commentid, replyid) {
+			$.ajax({
+				url: '/doReply',
+				type : 'POST',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({
+					"Reply_content" : $("#"+ replyid).val(),
+					"id" : Commentid.toString()
+				}),
+				dataType: "json",
+				success: function(data) {
+					// alert(JSON.stringify(data.descript));
+					location.reload();
+				},
+				error: function(data) {
+					alert(JSON.stringify(data))
+				}
+			});
+		};
+		function Concern(user_id) {
+			$.ajax({
+				url: 'doConcern',
+				type : 'POST',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({
+					"id" : user_id.toString()
+				}),
+				dataType: "json",
+				success: function(data) {
+					// alert(JSON.stringify(data.descript));
+					location.reload();
+				},
+				error: function(data) {
+					alert(JSON.stringify(data))
+				}
+			});
+		};
+		function Like(Circleid) {
+			$.ajax({
+				url: '/doLike',
+				type : 'POST',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({
+					"id" : Circleid
+				}),
+				dataType: "json",
+				success: function(data) {
+					// alert(JSON.stringify(data.descript));
+					location.reload();
+				},
+				error: function(data) {
+					alert(JSON.stringify(data))
+				}
+			});
+		};
+		function LikeOut(Circleid) {
+			$.ajax({
+				url: '/doLikeOut',
+				type : 'POST',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({
+					"id" : Circleid
+				}),
+				dataType: "json",
+				success: function(data) {
+					// alert(JSON.stringify(data.descript));
+					location.reload();
+				},
+				error: function(data) {
+					alert(JSON.stringify(data))
+				}
+			});
+		};
+		function ConcernOut(user_id) {
+			$.ajax({
+				url: 'doConcernOut',
+				type : 'POST',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({
+					"id" : user_id.toString()
+				}),
+				dataType: "json",
+				success: function(data) {
+					// alert(JSON.stringify(data.descript));
+					location.reload();
+				},
+				error: function(data) {
+					alert(JSON.stringify(data))
+				}
+			});
+		}
+		function Relay(Circle_id) {
+			$.ajax({
+				url: 'doRelay',
+				type : 'POST',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({
+					"id" : Circle_id,
+					"Relay_content" : $('#Relay_content').val()
+				}),
+				dataType: "json",
+				success: function(data) {
+					// alert(JSON.stringify(data.descript));
+					location.reload();
+				},
+				error: function(data) {
+					alert(JSON.stringify(data))
+				}
+			});
+		}
+		$("#fabiao").click(function() {
+			$.ajax({
+				url: '/doPost',
+				type : 'POST',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({
+					"circle_content" : $("#content").val(),
+				}),
+				dataType: "json",
+				success: function(data) {
+					alert(JSON.stringify(data.descript));
+					window.location = "/index";
+				},
+				error: function(data) {
+					alert(JSON.stringify(data))
+				}
+			});
+    	});
+	</script>
+</body>
+</html>

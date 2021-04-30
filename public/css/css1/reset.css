@@ -1,0 +1,24 @@
+html,body,div,ul,li,img,span{
+	margin: 0;
+	padding: 0;
+}
+li {
+	list-style: none;
+	text-decoration: none;
+}
+a {
+	text-decoration: none;
+	outline: none;
+	color: #333;
+}
+.cleanfloat:after {
+　　content:"";
+　　height:0;
+　　line-height:0;
+　  display:block;
+　　visibility:hidden;
+　　clear:both;
+}
+.cleanfloat {
+　　zoom:1;
+}

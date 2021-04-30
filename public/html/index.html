@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简易微博</title>
+	<link rel="stylesheet" href="/css/css/iconfont.css">
+	<link rel="stylesheet" href="/css/css/reset.css">
+	<link rel="stylesheet" href="/css/css/style.css">
+	<script src="/js/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="/js//jquery.min.js"><\/script>')</script>
+</head>
+<body>
+	<% include header.html %>
+	<div class="section2">
+		<div class="section">
+			<div class="section_left">
+				<ul class="part1">
+					<a href=""><li class="first">首页</li></a>
+					<a href=""><li>我的收藏</li></a>
+					<a href=""><li>我的点赞</li></a>
+					<a href=""><li>我的评论</li></a>
+				</ul>
+				<ul class="part2">
+					<a href=""><li>好友圈</li></a>
+					<a href=""><li>特别关注</li></a>
+					<a href=""><li>设计</li></a>
+					<a href=""><li>互联网</li></a>
+					<a href=""><li>同学</li></a>
+					<a href=""><li>朋友</li></a>
+				</ul>
+			</div>
+			<div class="section_main">
+				<div class="main_header">
+					<textarea name="content" id="content" cols="30" rows="10"></textarea>
+					<div class="nav"><i class="iconfont">&#xe505;</i><span class="word">表情</span></div>
+					<div class="nav"><i class="iconfont">&#xe608;</i><span class="word">图片</span></div>
+					<div class="nav"><i class="iconfont">&#xe601;</i><span class="word">视频</span></div>
+					<div class="nav"><i class="iconfont">&#xe698;</i><span class="word">话题</span></div>
+					<button type="button" id="fabiao">发布</button>
+				</div>
+				<div class="part_header">
+					<span>全部</span>
+					<span>原创</span>
+					<span>图片</span>
+					<span>视频</span>
+					<span>文章</span>
+					<form action="">
+						<input type="text" placeholder="我关注的人">
+						<button><i class="iconfont">&#xe63a;</i></button>
+					</form>
+				</div>
+			</div>
+			<div id="list10">
+
+			</div>
+			<script charset="UTF-8" type="text/template"  id="list1">
+				<%for(var i = 0; i < all.length; i++) {%>
+				<div class="part">
+					<div class="header">
+						<a href=""><img src="/img/<%=Avatar[i]%>" alt=""></a>
+						<div class="name">
+							<ul>
+								<a href=""><li><%=all[i].obju.Nickname%><span>（备注名称）</span></li></a>
+								<li><span><%=all[i].Create_At%></span></li>
+							</ul>
+						</div>
+						<%if(all[i].objc.User_phonenumber != phonenumber) {%>
+							<% if(ConcernPeople.Concern.length != 0) {%>
+								<% for(var j = 0 ; j < ConcernPeople.Concern.length ; j++) {%>
+									<% if(ConcernPeople.Concern[j] == all[i].user_id) {%>
+										<div class="list">
+											<div class="button"><button><span>√</span>已关注</button></div>
+											<div class="word"><a href="/doConcernOut/<%=all[i].user_id%>"><span>取消关注</span></a></div>
+											<div class="word"><span>设置备注</span></div>
+											<div class="word"><span>设置分组</span></div>
+											<div class="word"><span>设为特别关注</span></div>
+										</div>
+										<% break %>           <!-- 如果查询到就结束此次循坏 -->
+									<% } %>
+									<% if(j == ConcernPeople.Concern.length-1) {%>
+										<a href="/Concern/<%= all[i].user_id%>"><button><span>+</span>关注</button></a>
+										<% break %> 
+									<% } %>
+								<% } %>
+							<% } else {%>
+								<a href="/Concern/<%= all[i].user_id%>"><button><span>+</span>关注</button></a>
+							<% }%>	
+						<%} else {%>
+							
+						<%}%>
+						<span><a href=""><i class="iconfont">&#xe727;</i></a></span>
+					</div>
+					<div class="main">
+						<div class="word">
+							<%=all[i].objc.Circle_content%>
+							<a href="">
+								<span class="special">#这个是话题#</span>
+							</a>
+						</div>
+						<img src="/img/p1.png" alt="">
+						<img src="/img/p2.png" alt="">
+					</div>
+					<div class="foot">
+						<ul>
+							<li>
+								
+							</li>
+							<li class="foot_comment">
+								<% if(relays.length != 0) { %>
+								<% for(var k = 0; k < relays.length; k++) { %>
+									<% if(relays[k].circle_id == circles[i]._id) { %>
+								<a href="/doRalay/<%=all[i].objc.Ciecle_id%>"><i class="iconfont">&#xe6e7;</i></a>
+								<a href="/doRalay/<%=all[i].objc.Ciecle_id%>"><span>已转发</span></a>
+								<% break %>
+								<% } %>
+								<% if(k == relays.length-1) { %>
+								<a href="/doRalay/<%=all[i].objc.Ciecle_id%>"><i class="iconfont">&#xe6e7;</i></a>
+								<a href="/doRalay/<%=all[i].objc.Ciecle_id%>"><span>转发</span></a>
+								<% break %>
+								<% } %>
+								<% } %>
+								<% } else {%>
+									<a href="/doRalay/<%=all[i].objc.Ciecle_id%>"><i class="iconfont">&#xe6e7;</i></a>
+									<a href="/doRalay/<%=all[i].objc.Ciecle_id%>"><span>转发</span></a>
+								<% } %>
+							</li>
+							<li>
+								<i class="iconfont" onclick="isHidden('comment<% i %>')">&#xe664;</i>
+								<span onclick="isHidden('comment<% i %>')">32</span>
+							</li>
+							<li class="special">
+								<a href="/doLike/<%=all[i].objc.Ciecle_id%>"><i class="iconfont">&#xe60c;</i></a>
+								<a href=""><span>1</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="comment" id="comment<% i %>" style="display : none">
+					<div class="input">
+						<form>
+						<img src="/img/p0.png" alt="">
+						<textarea name="Comment_content" id="Comment_content" cols="30" rows="10"></textarea>
+						<div class="nav"><i class="iconfont">&#xe505;</i><span class="word">表情</span></div>
+						<div class="nav"><i class="iconfont">&#xe608;</i><span class="word">图片</span></div>						
+							<input type="checkbox" id="content">
+							<span class="word">同时转发到我的微博</span>
+							<a href="/doComments/<%=all[i].objc.Ciecle_id%>"><button>发布</button></a>
+						</form>
+					</div>
+					<div class="header">
+						<a href=""><img src="/img/p0.png" alt=""></a>
+						<div class="name">
+							<ul>
+								<a href=""><li>这个是昵称:<span>这个是评论的内容</span></li></a>
+								<li><span>今天14.12</span></li>
+							</ul>
+						</div>
+						<span class="word">回复</span>
+						<span><i class="iconfont">&#xe60c;</i><span class="special">12</span></span>
+						<div class="answer">
+							<div>
+								<textarea name="" id="" cols="30" rows="10"></textarea>
+							</div>
+							<div class="nav"><i class="iconfont">&#xe505;</i><span class="word">表情</span></div>
+							<div class="nav"><i class="iconfont">&#xe608;</i><span class="word">图片</span></div>
+							<a href="/doReply"><button>发布</button></a>
+							<a href=""><img src="/img/p0.png" alt=""></a>
+							<div class="name">
+								<ul>
+									<a href=""><li>这个是昵称:<span>这个是评论的内容</span></li></a>
+									<li><span>今天14.12</span></li>
+								</ul>
+							</div>
+							<span class="words">回复</span>
+							<span><i class="iconfont">&#xe60c;</i><span class="special">12</span></span>
+						</div>
+					</div>
+				</div>
+				<% } %>
+			</script>
+			<div class="section_right">
+				<div id="list20">
+
+				</div>
+				<script charset="UTF-8" type="text/template"  id="list2">
+				<div class="header">
+					<img class="background" src="/img/矩形 286.png" alt="">
+					<img class="picture" src="/img/<%=userAvatar%>" alt="">
+					<span><%=userNickname%></span>
+					<div class="down">
+						<div class="part">
+							<ul>
+								<li><%=ConcernPeople.Concern.length%></li>
+								<li><a href="/MyConcern">关注</a></li>
+							</ul>
+						</div>
+						<div class="part">
+							<ul>
+								<li><%=ConcernPeople.Fans.length%></li>
+								<li><a href="/MyFan">粉丝</a></li>
+							</ul>
+						</div>
+						<div class="part3">
+							<ul>
+								<li><%=blogs_count%></li>
+								<li><a href="">微博</a></li>
+							</ul>
+						</div>
+					</div>	
+				</div>
+			</script>
+				<div class="talk">
+					<div class="header">
+						<span class="word1">热门话题</span>
+						<span><a href=""><i class="iconfont">&#xe653;</i></a></span>
+						<a href=""><span class="word2">换一换</span></a>
+					</div>
+					<ul>
+						<a href="">
+							<li>#这个是话题啊啊啊啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话题啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话题啊啊啊啊啊啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话题啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话题啊啊啊啊啊啊啊啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是啊啊啊话题啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话啊啊题啊#<span>1.7亿</span></li>
+						</a>
+						<a href="">
+							<li>#这个是话啊啊啊啊题啊#<span>1.7亿</span></li>
+						</a>
+					</ul>
+					<div class="foot">
+						<a href="">查看更多</a>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function isHidden(oDiv) {
+			var vDiv = document.getElementById(oDiv);
+			vDiv.style.display = (vDiv.style.display == 'none') ? 'block' : 'none';
+		}
+		$("#fabiao").click(function() {
+			$.ajax({
+				url: '/doPost',
+				type : 'POST',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({
+					"circle_content" : $("#content").val(),
+				}),
+				dataType: "json",
+				success: function(data) {
+					alert(JSON.stringify(data.descript));
+					window.location = "/";
+				},
+				error: function(data) {
+					alert(JSON.stringify(data))
+				}
+			})
+		});
+		$.ajax({
+			url: 'http://127.0.0.1:3000/',
+				type : 'get',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({
+					
+				}),
+				dataType: "json",
+				success: function(data) {
+					bindHTML(data);
+				},
+				error: function(data) {
+					alert(JSON.stringify(data))
+				}				
+		})
+		function bindHTML(data) {
+    	//->首先把页面中模板的innerHTML获取到
+		var str = $("#list1").html();
+		var str2 = $("#list2").html();
+		//->然后把str和data交给EJS解析处理，得到我们最终想要的字符串
+		var result1 = ejs.render(str, {data:data});
+		var result2 = ejs.render(str2, {data:data});
+    	//->最后把获取的HTML放入到MENU中
+		$("#list10").html(result1);
+		$("#list20").html(result2);
+		}
+	</script>
+</body>
+</html>

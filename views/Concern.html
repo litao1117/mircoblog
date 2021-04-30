@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简易微博</title>
+	<link rel="stylesheet" href="css/css3/iconfont.css">
+	<link rel="stylesheet" href="css/css3/reset.css">
+	<link rel="stylesheet" href="css/css3/style.css">
+</head>
+<body>
+	<div class="section1">
+		<div class="section">
+			<form action="">
+			<img class="header_main" src="img/WB_logo-x2.png" alt="">
+			<ul class="header_main">
+				<a href="/index"><li>首页</li></a>
+				<a href=""><li>视频</li></a>
+				<a href=""><li>发现</li></a>
+				<a href=""><li>游戏</li></a>
+			</ul>
+			<input  class="header_main" type="text" required>
+			<button>
+				<a href=""><i class="iconfont">&#xe63a;</i></a>
+			</button>
+			<div class="ranking">
+				<i class="iconfont">&#xe68f;</i>
+				<a href=""><span>排行榜</span></a>
+			</div>
+			<a href="">
+				<img  class="picture" src="img/椭圆 1.png" alt="">
+			</a>
+		</form>
+			<button class="quit" id="zhuxiao">注销</button>
+			<div class="rest cleanfloat">
+				<a href=""><i class="iconfont">&#xe609;</i></a>
+			</div>
+		</div>
+	</div>
+	<div class="section2">
+		<div class="section">
+			<div class="section_left">
+				<div class="header">
+					<img class="picture" src="img/<%=user.Avatar%>" alt="">
+					<div class="name"><%=user.Nickname%></div>
+					<div class="sign"><%=user.Signature%></div>
+				</div>
+				<div class="main">
+					<span class="main_header">关注<span><%=concern.length%></span></span>
+					<ul>
+						<li><i class="iconfont">&#xe602;</i><span class="word">特别关注</span><span>1</span></li>
+						<li><i class="iconfont">&#xe613;</i><span class="word">好友圈</span><span>2</span></li>
+						<li><i class="iconfont">&#xe543;</i><span class="word">兴趣主页</span><span>4</span></li>
+					</ul>
+				</div>
+				<div class="foot">
+					<span class="word">粉丝<span><%=user.Fans.length%></span></span>
+				</div>
+			</div>
+			<div class="section_main">
+				<div class="header">
+					<span class="word">全部关注<span><%=concern.length%></span></span>
+				</div>
+				<div class="main">
+					<div class="main_header">
+						<span>姓名首字母<i class="iconfont">&#xe501;</i></span>
+						<div class="header_right">
+							<form action="">
+								<input  type="text" required placeholder="搜索我的关注">
+								<button>
+									<a href=""><i class="iconfont">&#xe63a;</i></a>
+								</button>
+							</form>
+						</div>
+					</div>
+					<%for(var i = 0; i < concern.length; i++) {%>
+						<div class="part">
+							<img src="img/<%=concern[i].Avatar%>" alt="">
+							<div class="part_right">
+								<div class="name"><%=concern[i].Nickname%></div>
+								<div class="sign">这个是个人签名</div>
+								<div class="list1">
+									<span class="list1_header">互联网</span>
+									<ul>
+										<li><input type="checkbox"><span class="word">明星</span></li>
+										<li><input type="checkbox"><span class="word">萌宠</span></li>
+										<li><input type="checkbox"><span class="word">名人明星</span></li>
+										<li><input type="checkbox"><span class="word">同学</span></li>
+										<li><input type="checkbox"><span class="word">同事</span></li>
+									</ul>
+								</div>
+								<button>特别关注</button>
+								<div class="list2">
+									<i class="iconfont">&#xe501;</i>
+									<ul>
+										<li>私信</li>
+										<li>设置备注</li>
+										<li onclick="ConcernOut('<%=concern[i].user_id%>')">取消关注</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<%}%>
+				</div>
+				<div class="foot">
+					<button>上一页</button>
+					<ul>
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+						<li>8</li>
+						<li>9</li>
+					</ul>
+					<button>下一页</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/jquery.min.js"></script>
+    	<script>window.jQuery || document.write('<script src="/js//jquery.min.js"><\/script>')</script>
+		<script type="text/javascript">
+		$("#zhuxiao").click(function() {
+    			$.ajax({
+					url: '/doCancle',
+					type : 'get',
+					contentType: "application/json; charset=utf-8",
+					data: JSON.stringify({
+						
+											}),
+					dataType: "json",
+					success: function(data) {
+						alert(JSON.stringify(data.descript));
+						window.location = "/";
+					},
+					error: function(data) {
+						alert(JSON.stringify(data))
+					}
+				})
+			});
+			function ConcernOut(user_id) {
+			$.ajax({
+				url: 'doConcernOut',
+				type : 'POST',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({
+					"id" : user_id.toString()
+				}),
+				dataType: "json",
+				success: function(data) {
+					alert(JSON.stringify(data.descript));
+					location.reload();
+				},
+				error: function(data) {
+					alert(JSON.stringify(data))
+				}
+			})
+		}
+	</script>
+</body>
+</html>

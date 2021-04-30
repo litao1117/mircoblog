@@ -1,0 +1,175 @@
+body{
+	background-color: #F3F2F5;
+}
+.iconfont{
+	font-size: 35px;
+	color:  #999999;
+	margin-top:30px;
+}
+.section{
+	width: 1200px;
+	margin:0 auto;
+}
+.section1{
+	position: fixed;
+	z-index: 999;
+	width: 100%;
+	height: 54px;
+	background-color: #fff;
+
+}
+.header_main{
+	display: inline-block;
+	vertical-align: top;
+}
+.section1 img{
+	margin-top:10px;
+}
+.section1 li{
+	display: inline-block;
+	margin-left: 40px;
+	margin-top:14px;
+	font-size: 18px;
+	color:  #999999;
+}
+.section1 li:hover{
+	color:  #222;
+}
+.section1 input{
+	margin-left: 50px;
+	margin-top: 6px;
+	height: 36px;
+	width: 300px;
+	outline: none;
+	font-size: 20px;
+	border:2px solid #DDDDDD;
+}
+.section1 button{
+	width: 40px;
+	height: 35px;
+	border:none;
+	background-color: #fff;
+	margin-left: -50px;
+	margin-top: 9px;
+}
+.section1 .ranking{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 30px;
+	color: #656566;
+	margin-top: 10px;
+}
+.section1 .ranking .iconfont:hover{
+	color: blue;
+}
+.section1 .ranking span:hover{
+	color: blue;
+}
+.section1 .header_right{
+	display: inline-block;
+	vertical-align: top;
+	margin-left:200px;
+}
+.section1 .header_right li{
+	font-size: 15px;
+	color: #888888;
+	display: inline-block;
+	vertical-align: top;
+	border-right: 2px solid #DDDDDD;
+	cursor:pointer;
+}
+.section1 .header_right .special{
+	font-size: 15px;
+	color: #888888;
+	margin-left:0px; 
+	display: inline-block;
+	vertical-align: top;
+	border:none;
+}
+.section1 .header_right li:hover{
+	color: #EA824B;
+}
+
+.section2 .section .main{
+	position: relative;
+	top: 80px;
+	width: 1200px;
+	height: 600px;
+	background-color: #fff; 
+}
+.section2 .section .main .join{
+	width: 300px;
+	height: 600px;
+	margin:0 auto;
+	/*background-color: red;*/
+}
+.section2 .section .main .join span{
+	font-size: 20px;
+	color: #EA824B;
+	position: relative;
+	top: 80px;
+	left: 110px;
+}
+.section2 .section .main .join .test {
+    position: relative;
+    top: 0px;
+    left: 27px;
+    font-size: 18px;
+    cursor:pointer;
+}
+.section2 .section .main .join .input{
+	position: relative;
+	top: 120px;
+}
+.section2 .section .main .join input{
+	width: 300px;
+	height: 36px;
+	margin-top: 15px;
+	border:1px solid #EAEAEA;
+	outline:none;
+	font-size: 15px;
+}
+.section2 .section .main .join .special{
+	width: 160px;
+	height: 36px;
+	margin-top: 15px;
+	border:1px solid #EAEAEA;
+}
+
+.section2 .section .main .join img{
+	width: 120px;
+	height: 38px;
+	position: relative;
+	top:-66px;
+	left:-96px;
+	cursor: pointer;
+}
+.section2 .section .main .join button{
+	width: 300px;
+	height: 36px;
+	background-color: #EA824B;
+	font-size: 10px;
+	color: #fff;
+	position: relative;
+	top:150px;
+	border:1px solid #EAEAEA;
+	cursor:pointer;
+	outline:none;
+}
+.section2 .section .main .join input:focus{
+	outline: 2px solid #EA824B;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

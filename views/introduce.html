@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简易微博</title>
+	<link rel="stylesheet" href="css/intro_css/iconfont.css">
+	<link rel="stylesheet" href="css/intro_css/reset.css">
+	<link rel="stylesheet" href="css/intro_css/style.css">
+</head>
+<body>
+	<div class="section1">
+		<div class="section">
+			<form action="">
+			<img class="header_main" src="img/WB_logo-x2.png" alt="">
+			<ul class="header_main">
+				<a href="/index"><li>首页</li></a>
+				<a href=""><li>视频</li></a>
+				<a href=""><li>发现</li></a>
+				<a href=""><li>游戏</li></a>
+			</ul>
+			<input  class="header_main" type="text" required>
+			<button>
+				<a href=""><i class="iconfont">&#xe63a;</i></a>
+			</button>
+			<div class="ranking">
+				<i class="iconfont">&#xe68f;</i>
+				<a href=""><span>排行榜</span></a>
+			</div>
+			<a href="">
+				<img  class="picture" src="img/椭圆 1.png" alt="">
+			</a>
+		</form>
+			<button class="quit" id="zhuxiao">注销</button>
+			<div class="rest cleanfloat">
+				<a href=""><i class="iconfont">&#xe609;</i></a>
+			</div>
+		</div>
+	</div>
+	<div class="section2">
+		<div class="section">
+			<div class="section_left">
+				<div class="header">
+					<img class="picture" src="img/moren.jpg" alt="">
+					<div class="name" id="Nickname">www</div>
+					<div class="sign" id="Signature">哈哈哈</div>
+				</div>
+				<div class="down">
+					<div class="part">
+						<ul>
+							<li id="concernCount" type="text">3</li>
+							<li><a href="">关注</a></li>
+						</ul>
+					</div>
+					<div class="part">
+						<ul>
+							<li id="fanCount" type="text">2</li>
+							<li><a href="">粉丝</a></li>
+						</ul>
+					</div>
+					<div class="part3">
+						<ul>
+							<li id="blogs_Count" type="text">3</li>
+							<li><a href="">微博</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="section_main">
+				<div class="part">
+					<div class="header">
+						<span>基本信息</span>
+						<div class="solid"></div>
+						<a href="/edition"><span>编辑</span></a>
+					</div>
+					<div class="list">
+						<ul>
+							<li><span class="name" >登录名</span><span class="news" id="PhoneNumber" type="text">15834658956</span></li>
+							<li><span class="name">昵称</span><span class="news" id="Nickname" type="text">哈哈</span></li>
+							<li><span class="name">姓名</span><span class="news" id="Name" type="text">李涛</span></li>
+							<li><span class="name">性别</span><span class="news" id="Sex" type="text">男</span></li>
+							<li><span class="name">所在地</span><span class="news" id="Location" type="text">山西太原</span></li>
+	
+							<li><span class="name">感情状况</span><span class="news" id="Emotionalstate" type="text">但是</span></li>
+							<li><span class="name">生日</span><span class="news" id="Birthday" type="text">2001.02.05</span></li>
+							<li><span class="name">签名</span><span class="news" id="Signature" type="text">哈哈哈哈</span></li>
+							<li><span class="name">注册时间</span><span class="news" id="Create_At" type="text">131232</span></li>
+						</ul>
+					</div>
+				</div>
+				<div class="part">
+					<div class="header">
+						<span>联系信息</span>
+						<div class="solid"></div>
+						<a href="/edition"><span>编辑</span></a>
+					</div>
+					<div class="list">
+						<ul>
+							<li><span class="name">邮箱</span><span class="news" id="Email" type="text">1234424</span></li>
+							<li><span class="name">QQ</span><span class="news" id="QQ" type="text">123455</span></li>
+						</ul>
+					</div>
+				</div>
+				<div class="part">
+					<div class="header">
+						<span>教育信息</span>
+						<div class="solid"></div>
+						<a href="/edition"><span>编辑</span></a>
+					</div>
+					<div class="list">
+						<ul>
+							<li><span class="name">本科</span><span class="news" id="School" type="text">天天大学</span></li>
+							<li><span class="name">研究生</span><span class="news">无</span></li>
+						</ul>
+					</div>
+				</div>
+				<div class="part">
+					<div class="header">
+						<span>标签信息</span>
+						<div class="solid"></div>
+						<a href="/edition"><span>编辑</span></a>
+					</div>
+					<div class="list">
+						<ul>
+							<li><span class="name">标签</span><span class="special">#电影</span><span class="special">#设计</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/jquery.min.js"></script>
+    	<script>window.jQuery || document.write('<script src="/js//jquery.min.js"><\/script>')</script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+		$.ajax({
+			url:"http://127.10.10:3000/introduce",
+			dataType:"json",
+			type:"GET",
+			contentType:"application/json; charset=utf-8",
+			success:function(data){
+					console.log(data),
+					$("#Nickname").text(data.result[0].Nickname),
+					$("#Created_At").text(data.result[0].Created_At),
+					$("#Sex").text(data.result[0].Sex),
+					$("#School").text(data.result[0].School),
+					$("#Email").text(data.result[0].Email),
+					$("#QQ").text(data.result[0].QQ),
+					$("#Signature").text(data.result[0].Signature),
+					$("#Birthday").text(data.result[0].Birthday),
+					$("#Emotionalstate").text(data.result[0].Emotionalstate),
+					$("#Location").text(data.result[0].Location),
+					$("#Name").text(data.result[0].Name),
+					$("#concernCount").text(data.result[0].Concern.length),
+					$("#fanCount").text(data.result[0].Fans.length),
+					$("#blogs_Count").text(data.blogs_count)
+					
+				},
+
+				error:function(xhr) {
+					alert(xhr.status)
+				}
+		})
+			
+			$("#zhuxiao").click(function() {
+    			$.ajax({
+					url: '/doCancle',
+					type : 'get',
+					contentType: "application/json; charset=utf-8",
+					data: JSON.stringify({
+						
+											}),
+					dataType: "json",
+					success: function(data) {
+						alert(JSON.stringify(data.descript));
+						window.location = "/";
+					},
+					error: function(data) {
+						alert(JSON.stringify(data))
+					}
+				})
+			});
+		})
+	</script>
+</body>
+</html>

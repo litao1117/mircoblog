@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简易微博</title>
+	<link rel="stylesheet" href="/css/css1/iconfont.css">
+	<link rel="stylesheet" href="/css/css1/reset.css">
+	<link rel="stylesheet" href="/css/css1/style.css">
+	<!-- <link href="/css/bootstrap.min.css" rel="stylesheet"> -->
+	<style type="text/css">
+		#cuowukuang{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="section1">
+		<div class="section">
+			<img class="header_main" src="img/WB_logo-x2.png" alt="">
+			<ul class="header_main">
+				<a href="/"><li>首页</li></a>
+				<a href=""><li>视频</li></a>
+				<a href=""><li>发现</li></a>
+				<a href=""><li>游戏</li></a>
+			</ul>
+			<input  class="header_main" type="text" required>
+			<button>
+				<a href=""><i class="iconfont">&#xe63a;</i></a>
+			</button>
+			<div class="ranking">
+				<i class="iconfont">&#xe68f;</i>
+				<a href=""><span>排行榜</span></a>
+			</div>
+			<div class="header_right">
+				<ul>
+					<li><a href="/">登录</a></li>
+					<li class="special">注册</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="section2">
+		<div class="section">
+			<div class="main">
+				<div class="join">
+					<span>账号注册</span>
+					<form>
+					<div class="input">
+						<input type="text" id="PhoneNumber" placeholder="请输入手机号">
+						<input class="special" type="text" id="captcha" name='captcha' placeholder="请输入图形验证码">
+						<span><img src="/getimg" class="cap" id="cap"></span>
+						<input class="special" type="text" id="testNumber" name='example' placeholder="请输入验证码">
+						<span id="getMsg" class="test">获取验证码</span>
+						<input type="password" id="Password" placeholder="请输入密码">
+						<input type="password" id="Password2" placeholder="请再次输入密码">
+					</div>
+					<button type="button" id="zhuce" class="btn btn-default">注册</button>
+				</form>
+				</div>
+				<div class="alert alert-danger" role="alert" id="cuowukuang">手机号被占用，请更换</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/js//jquery.min.js"><\/script>')</script>
+    <script src="/js/bootstrap.min.js"></script>
+	<script type="text/JavaScript">
+		$("input").focus(function() {
+			$("#cuowukuang").fadeOut();
+		});
+		$("#cap").click(function() {
+			$("#cap").load(location.href+ "/getimg");
+		})
+    		//注册按钮，用ajax提交表单
+    		$("#getMsg").click(function() {
+    			$.ajax({
+					url: '/getMsg',
+					type : 'POST',
+					contentType: "application/json; charset=utf-8",
+					data: JSON.stringify({
+						"PhoneNumber" : $("#PhoneNumber").val(),
+											}),
+					dataType: "json",
+					success: function(data) {
+						alert(JSON.stringify(data.testNumber))
+					},
+					error: function(data) {
+						alert(JSON.stringify(data))
+					}
+				})
+			});
+			//注册按钮，用ajax提交表单
+    		$("#zhuce").click(function() {
+    			$.ajax({
+					url: '/doRegister',
+					type : 'POST',
+					contentType: "application/json; charset=utf-8",
+					data: JSON.stringify({
+						"PhoneNumber" : $("#PhoneNumber").val(),
+						"Password" : $("#Password").val(),
+						"Password2" : $("#Password2").val(),
+						"testNumber" : $("#testNumber").val(),
+						"captcha" : $('#captcha').val()
+											}),
+					dataType: "json",
+					success: function(data) {
+						alert(JSON.stringify(data.descript));
+						if(data.descript == "注册成功") {
+							window.location = "/index";
+						}
+						else {
+							window.location = "/regist"
+						}
+					},
+					error: function(data) {
+						alert(JSON.stringify(data))
+					}
+				})
+			});
+			
+    </script>
+</body>
+</html>

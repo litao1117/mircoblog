@@ -1,0 +1,541 @@
+body{
+	background-color: #F3F2F5;
+}
+.iconfont{
+	font-size: 35px;
+	color:  #999999;
+	margin-top:30px;
+}
+.section{
+	width: 1200px;
+	margin:0 auto;
+}
+.section1{
+	position: fixed;
+	z-index: 999;
+	width: 100%;
+	height: 54px;
+	background-color: #fff;
+
+}
+.header_main{
+	display: inline-block;
+	vertical-align: top;
+}
+.section1 img{
+	margin-top:10px;
+}
+.section1 li{
+	display: inline-block;
+	margin-left: 40px;
+	margin-top:14px;
+	font-size: 18px;
+	color:  #999999;
+}
+.section1 li:hover{
+	color:  #222;
+}
+.section1 input{
+	margin-left: 50px;
+	margin-top: 6px;
+	height: 36px;
+	width: 300px;
+	outline: none;
+	font-size: 20px;
+	border:2px solid #DDDDDD;
+}
+.section1 button{
+	width: 40px;
+	height: 35px;
+	border:none;
+	background-color: #fff;
+	margin-left: -50px;
+	margin-top: 9px;
+}
+.section1 .ranking{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 30px;
+	color: #656566;
+	margin-top: 10px;
+}
+.section1 .ranking .iconfont:hover{
+	color: blue;
+}
+.section1 .ranking span:hover{
+	color: blue;
+}
+.section1 .quit{
+	position: relative;
+	top: -50px;
+	left: 1080px;
+	width: 40px;
+	height: 40px;
+	border:none;
+	outline: none;
+	cursor:pointer;
+	background-color: #fff;
+}
+.section1 .picture{
+	display: inline-block;
+	vertical-align: top;
+	margin-left:200px; 
+	border-radius: 50%;
+    width: 40px;
+}
+.section1 .rest{
+	float: right;
+	margin-right:30px; 
+	margin-top: -40px;
+	background-color: #EA824B;
+}
+.section1 .rest .iconfont{
+	font-size: 30px;
+	color: #fff;
+}
+.section1 .rest .iconfont:hover{
+	font-size: 35px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.section2 .section2_main{
+	width: 1200px;
+	height: 260px;
+	position: relative;
+	top: 80px;
+}
+.section2 .section2_main .background{
+	width: 1200px;
+	height: 260px;
+}
+.section2 .section2_main .picture{
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	top:50px;
+	left: 560px;
+	    border-radius: 50%;
+}
+.section2 .section2_main .name{
+	font-size: 20px;
+	color: #fff;
+	position: relative;
+	top:-120px;
+	text-align: center;
+}
+.section2 .section2_main .sign{
+	font-size: 20px;
+	color: #fff;
+	position: relative;
+	top:-100px;
+	text-align: center;
+}
+
+
+
+
+
+.section3 .section3_main{
+	width: 1200px;
+	height: 40px;
+	position: relative;
+	top: 100px;
+	background-color: #fff;
+}
+.section3 .section3_main span{
+	position:relative;
+	left:215px;
+	margin-left:130px;
+	font-size: 15px;
+	padding:10px;
+	position:relative;
+	top:8px;
+	cursor:pointer;
+}
+.section3 .section3_main span:hover{
+	border-bottom:3px solid #EA824B;
+}
+
+
+
+
+
+
+
+.section4{
+	position: relative;
+	top:130px;
+}
+.section4 .section4_main{
+	display: inline-block;
+	vertical-align: top;
+}
+.section4 .section4_main .header{
+	width: 290px;
+	height: 60px;
+	background-color: #fff;
+}
+.section4 .section4_main .header .part{
+	display: inline-block;
+	position: relative;
+	left:15px;
+	top: 10px;
+	width: 80px;
+	height:38px;
+	text-align:center;
+	border-right:1px solid #DDDDDD;
+}
+.section4 .section4_main .header .part3{
+	display: inline-block;
+	position: relative;
+	left:15px;
+	top: 10px;
+	width: 80px;
+	height:38px;
+	text-align:center;
+}
+.section4 .section4_main .main{
+	width: 290px;
+	height: 204px;
+	background-color: #fff;
+	position: relative;
+	top:20px;
+}
+.section4 .section4_main  .part1{
+	width:290px; 
+	height: 40px;
+	font-size: 15px;
+	border-bottom: 2px solid #EAEAEA;
+}
+.section4 .section4_main  .part1 span{
+	position: relative;
+	left: 20px;
+	top: 10px;
+}
+.section4 .section4_main .main .part2{
+	width: 290px;
+	height: 100px;
+	font-size: 13px;
+}
+.section4 .section4_main .main .part2 .iconfont{
+	font-size: 15px;
+}
+.section4 .section4_main .main .part2 li{
+	margin-top: 20px;
+	margin-left: 15px;
+}
+.section4 .section4_main .main .part2 span{
+	margin-left: 10px;
+	color: #666666;
+}
+.section4 .section4_main  .part3{
+	text-align:center;
+	font-size: 15px;
+	margin-top: 10px;
+	color: #666666;
+	cursor:pointer;
+}
+.section4 .section4_main .foot{
+	width: 290px;
+	height: 383px;
+	background-color: #fff;
+	position: relative;
+	top:40px;
+}
+.section4 .section4_main .foot .part2{
+	width: 290px;
+	height: 300px;
+}
+
+
+.section4 .section4_main .foot .part2 .big{
+	width: 178px;
+	height: 178px;
+	position: relative;
+	top: 10px;
+	left: 10px;
+}
+.section4 .section4_main .foot .part2 .left1{
+	width: 86px;
+	height: 86px;
+	position:relative;
+	top:-80px;
+	left:15px;
+}
+.section4 .section4_main .foot .part2 .left2{
+	width: 86px;
+	height: 86px;
+	position:relative;
+	top:-80px;
+	left:197px;
+}
+.section4 .section4_main .foot .part2 .down1{
+	width: 86px;
+	height: 86px;
+	position: relative;
+	top: -75px;
+	left: 10px;
+}
+.section4 .section4_main .foot .part2 .down{
+	width: 86px;
+	height: 86px;
+	position: relative;
+	top: 15px;
+	left:5px;
+	margin-left:6px;
+}
+
+
+.section4 .section4_main1{
+	position: relative;
+	left: 15px;
+	display: inline-block;
+	vertical-align: top;
+}
+.section4 .section4_main1 .main_header{
+	width: 890px;
+	height: 46px;
+	background-color: #fff;
+}
+.section4 .section4_main1 .main_header span{
+	font-size: 15px;
+	margin-left: 30px;
+	position: relative;
+	top: 13px;
+	cursor:pointer;
+}
+.section4 .section4_main1 .main_header span:hover{
+	color: #EA824B;
+}
+.section4 .section4_main1 .main_header input{
+	width: 190px;
+	height: 26px;
+	position: relative;
+	left: 680px;
+	top: -13px;
+	font-size: 15px;
+	outline: none;
+	border:1px solid #DDDDDD;
+}
+.section4 .section4_main1 .main_header button{
+	width: 25px;
+	height: 25px;
+	position: relative;
+	left: 645px;
+	top: -10px;
+	border:none;
+	background-color: #fff;
+}
+.section4 .section4_main1 .main_header .iconfont{
+	font-size: 30px;
+	position: relative;
+	left: -10px;
+	top: -5px;
+}
+
+
+
+
+
+
+.section4_main1 .main_right{
+	width: 87px;
+	height: 446px;
+	position: fixed;
+	right:190px;
+}
+.section4_main1 .main_right li{
+	padding-left: 20px;
+	height: 20px;
+	width: 87px;
+	margin-top: 20px;
+	cursor:pointer;
+}
+.section4_main1 .main_right li:hover{
+	border-left: 2px solid #569FC9;
+}
+
+
+
+
+
+
+
+
+
+.section4_main1 .part{
+	width: 750px;
+	border-radius: 1%;
+	background-color: #fff;
+	margin-top: 20px;
+}
+.section4_main1 .part .header img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	position: relative;
+	top: 20px;
+	left: 20px;
+}
+.section4_main1 .part .header .name{
+	width: 400px;
+	position: relative;	
+	left: 90px;
+	top:-30px;
+}
+.section4_main1 .part .header .name li{
+	font-size: 15px;
+	color: #222;
+}
+.section4_main1 .part .header .name span{
+	font-size: 10px;
+	color: #999;
+}
+.section4_main1 .part .header .iconfont{
+	font-size: 20px;
+	color: #999;
+	position:relative;
+	left:700px;
+	top:-70px;
+}
+.section4_main1 .part  .main{
+	width: 750px;
+	position:relative;
+	top:-45px;
+}
+.section4_main1 .part  .main .word{
+	width: 620px;
+	font-size: 13px;
+	color: #222;
+	position: relative;
+	left:90px;
+}
+.section4_main1 .part  .main .special{
+	color: #EA824B;
+}
+.section4_main1 .part .main img{
+	display: inline-block;
+	visibility: top;
+	width: 136px;
+	height: 136px;
+	position:relative;
+	left:70px;
+	top:20px;
+	margin-left:20px;
+}
+.section4_main1 .part .foot{
+	width: 750px;
+	height: 34px;
+	border-top: 1px solid #DDDDDD;
+}
+.section4_main1 .part .foot li{
+	display: inline-block;
+	visibility: top;
+	position:relative;
+	top:5px;
+	left:25px;
+	margin-left: 47px;
+	width: 130px;
+	height: 30px;
+	border-right: 1px solid #DDDDDD;
+}
+.section4_main1 .part .foot .special{
+	display: inline-block;
+	visibility: top;
+	position:relative;
+	left:25px;
+	margin-left: 47px;
+	width: 130px;
+	height: 30px;
+	border:none;
+}
+.section4_main1 .part .foot .iconfont{
+	font-size: 20px;
+	cursor:pointer;
+}
+.section4_main1 .part .foot span{
+	font-size: 15px;
+	color: 10px;
+	cursor:pointer;
+}
+
+
+.section4_main1 .part .main .relay{
+	width: 750px;
+	background-color: #F3F2F5;
+	position: relative;
+	top: 10px;
+}
+
+.section4_main1 .part  .main .relay .word{
+	width: 620px;
+	font-size: 13px;
+	color: #222;
+	position: relative;
+	left:90px;
+	top:10px;
+}
+.section4_main1 .part  .main .relay .special{
+	color: #EA824B;
+}
+.section4_main1 .part  .main .relay .name{
+	position: relative;
+	left:90px;
+}
+.section4_main1 .part  .main .relay .time{
+	position: relative;
+	left:90px;
+	margin-top:30px;
+}
+.section4_main1 .part .main .relay img{
+	display: inline-block;
+	visibility: top;
+	width: 136px;
+	height: 136px;
+	position:relative;
+	left:70px;
+	top:20px;
+	margin-left:20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
